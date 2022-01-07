@@ -1,24 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>KOSAI</title>
-
-  <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-  <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-</head>
+@include('shared.header')
 
 <body id="page-top">
   <!---------------------------- Page Wrapper ------------------------------->
@@ -34,12 +14,14 @@
             <div id="content">
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <!------------------------ Sidebar Toggle (Topbar) ------------------------->
+                    <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-
-                    <!-- Topbar Search -->
+                    {{-- <div class="text-center d-none d-md-inline">
+                        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                    </div> --}}
+                    <!---------------------------- Topbar Search ------------------------->
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                         <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
@@ -77,66 +59,68 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-plus fa-2x"></i>
-                                {{-- <span class="text-dark font-weight-bold">&#43;</span> --}}
                             </a>
                             <!-- Dropdown - User Information -->
                             <!-- Button trigger modal -->
+
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalCenter" href="#">
+                                <button class="dropdown-item" data-toggle="modal" data-target="#exampleModalCenter" href="#">
                                     Create Classroom
-                                </a>
+                                </button>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal" href="#">
+                                <button class="dropdown-item" data-toggle="modal" data-target="#exampleModal" href="#">
                                     Join Classroom
-                                </a>
+                                </button>
                             </div>
+
                             <!-- Nav Item - Alerts -->
                             <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-primary">
-                                    <i class="fas fa-file-alt text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 12, 2019</div>
-                                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                </div>
+                                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-bell fa-fw"></i>
+                                    <!-- Counter - Alerts -->
+                                    <span class="badge badge-danger badge-counter">3+</span>
                                 </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-success">
-                                    <i class="fas fa-donate text-white"></i>
+                                <!-- Dropdown - Alerts -->
+                                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                                    <h6 class="dropdown-header">
+                                    Alerts Center
+                                    </h6>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                        <i class="fas fa-file-alt text-white"></i>
+                                        </div>
                                     </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 7, 2019</div>
-                                    $290.29 has been deposited into your account!
-                                </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-warning">
-                                    <i class="fas fa-exclamation-triangle text-white"></i>
+                                    <div>
+                                        <div class="small text-gray-500">December 12, 2019</div>
+                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
                                     </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-success">
+                                        <i class="fas fa-donate text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 7, 2019</div>
+                                        $290.29 has been deposited into your account!
+                                    </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-warning">
+                                        <i class="fas fa-exclamation-triangle text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 2, 2019</div>
+                                        Spending Alert: We've noticed unusually high spending for your account.
+                                    </div>
+                                    </a>
+                                    <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                                 </div>
-                                <div>
-                                    <div class="small text-gray-500">December 2, 2019</div>
-                                    Spending Alert: We've noticed unusually high spending for your account.
-                                </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
+                            </li>
                         </li>
 
                         <!-- Nav Item - Messages -->
@@ -200,28 +184,33 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                               @auth
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->fname." " }}{{ auth()->user()->lname }}</span>
+                                <img class="img-profile rounded-circle" src="{{ asset('uploads/profiles/'.auth()->user()->image) }}">
+                               @endauth
+                               @guest
+                                    <button class="btn btn-primary" type="submit">Not an User</button>
+                               @endguest
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Activity Log
-                                </a>
+                                <button class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </button>
+                                <button class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </button>
+                                <button class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </button>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Logout
-                                </a>
+                                <button class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </button>
                             </div>
                         </li>
                     </ul>
@@ -232,45 +221,48 @@
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Classrooms</h1>
-                    <!-- ROW  -->
-                    <div>
-                        <!-- COL -->
-                        <div class="col-lg-3 col-md-4 col-sm-1">
-                            <!-- CARD -->
-                            <div class="card border-bottom-primary shadow mb-4">
-                                <div class="card-header py-3">
-                                    <a href="#!">
-                                        <h6 class="m-0 font-weight-bold text-primary">Python SE-IT</h6>
+                    <!--------------- ROW  ---------------->
+                    <div class="row">
+                        <!------------- COL --------------->
+                        @foreach ($classroomMember as $member)
+                            <div class="col-lg-3 col-md-4 col-sm-1">
+                                <!-------------- CARD ----------->
+                                <div class="card border-bottom-primary shadow mb-4">
+                                    <div class="card-header" style="background-color:#4368d7;">
+                                        <a href="" style="color:white">
+                                            <h6 class="font-weight-bold" style="color:#f8f9fc">{{\Illuminate\Support\Str::limit($member->classroom->name, 24)}}</h6>
+                                        </a>
+                                        <a href="#!" style="color:white">
+                                            <h6 style="color:#f8f9fc">{{ $member->classroom->section }}</h6>
+                                        </a>
+                                        <a href="" style="color:white">
+                                            <h6 style="color:#f8f9fc">{{\Illuminate\Support\Str::limit($member->user->fname." ".$member->user->lname, 24)}}</h6>
+                                        </a>
+                                    </div>
+                                    <a href="">
+                                        <div class="card-body">
+                                            <div class="text-center">
+                                                <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
+                                            </div>
+                                            <p class="text-secondary">Description</p>
+                                        </div>
                                     </a>
                                 </div>
-                                <a href="#!">
-                                    <div class="card-body">
-                                        <div class="text-center">
-                                            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
-                                        </div>
-                                        <p class="text-secondary">Description</p>
-                                    </div>
-                                </a>
+                                <!--------- END CARD --------------->
                             </div>
-                            <!-- END CARD -->
-                        </div>
-                        <!-- END COL -->
+                        @endforeach
+                        <!--------- END COL --------------->
                     </div>
-                    <!-- END ROW -->
+                    <!----------------------- END ROW ----------------------------->
                 </div>
                 <!-- /.container-fluid -->
             </div>
             <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2020</span>
-                </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
+            <!--------------- Footer ------------------->
+            @include('shared.footer')
+            <!---------------- Footer ------------------->
+
         </div>
         <!-- End of Content Wrapper -->
     </div>
@@ -281,25 +273,12 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-----------------------------Create class, Join Class, Logout Modal------------------------->
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-            </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-        </div>
-    </div>
-    </div>
+    <!----------------------------- Create class, Join Class, Logout Modal ------------------------->
+    @include('modals.logout')
+    @include('modals.joinClass')
+    @include('modals.createClass')
+    <!----------------------------- Create class, Join Class, Logout Modal ------------------------->
+
 
     <!-- Modal Create Class -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -328,6 +307,7 @@
             </div>
         </div>
     </div>
+
     <!-- Modal Join Class -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -367,5 +347,12 @@
     <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+    {{-- <script>
+        $('#sidebarToggleTop').click(function() {
+          $('#accordionSidebar').removeClass("toggled");
+
+        });
+    </script> --}}
+
 </body>
 </html>
