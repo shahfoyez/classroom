@@ -20,6 +20,7 @@ class CreateClassroomsTable extends Migration
             $table->string('subject');
             $table->unsignedBigInteger('created_by')->index();
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade')->onUpdate('No Action');
+            $table->string('code');
             $table->timestamps();
         });
     }

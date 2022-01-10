@@ -11,7 +11,7 @@ class GeneralController extends Controller
     public function index()
     {
         $member =ClassroomMember::get()->where('user_id', auth()->user()->id);
-        return view('dashboard', [
+        return view('dashboard1', [
             'classroomMember' => $member
         ]);
     }

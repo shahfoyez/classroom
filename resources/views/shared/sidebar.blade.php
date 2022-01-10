@@ -1,5 +1,5 @@
 <!------------------- Sidebar -------------------->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar" >
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon ">
@@ -25,23 +25,22 @@
     <div class="sidebar-heading">
         Teaching
     </div>
-    <!-- Nav Item - Utilities Collapse Menu -->
-    {{-- <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-        <i class="fas fa-fw fa-chart-area"></i>
-        <span>My Class</span></a>
-    </li> --}}
     <li class="nav-item">
         <a class="nav-link" href="charts.html">
             <i class="fas fa-money-check"></i>
             <span>To Review</span>
         </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-        <i class="fas fa-fw fa-chart-area"></i>
-        <span>Create Classwork</span></a>
-    </li>
+    @foreach ($classroomMember as $member)
+        @if ($member->is_teacher)
+        <li class="nav-item">
+            <a class="nav-link" href="charts.html">
+                <i class="fas fa-copyright"></i>
+                <span>{{\Illuminate\Support\Str::limit($member->classroom->name, 20)}}</span>
+            </a>
+        </li>
+        @endif
+    @endforeach
     <!-- Divider -->
     <hr class="sidebar-divider">
     <!-- Heading -->
@@ -51,25 +50,19 @@
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link" href="charts.html">
-        <i class="fas fa-fw fa-chart-area"></i>
-        <span>Classrooms</span></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="charts.html">
         {{-- <i class="fas fa-fw fa-chart-area"></i> --}}
         <i class="fas fa-tasks"></i>
         <span>To Do</span></a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-        <i class="fas fa-fw fa-chart-area"></i>
-        <span>To Review</span></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-        <i class="fas fa-fw fa-chart-area"></i>
-        <span>Create Assignment</span></a>
-    </li>
+    @foreach ($classroomMember as $member)
+        @if ($member->is_teacher==0)
+        <li class="nav-item">
+            <a class="nav-link" href="charts.html">
+            <i class="fas fa-copyright"></i>
+            <span>{{\Illuminate\Support\Str::limit($member->classroom->name, 20)}}</span></a>
+        </li>
+        @endif
+    @endforeach
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

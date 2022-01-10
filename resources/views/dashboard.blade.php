@@ -1,9 +1,8 @@
 @include('shared.header')
 
 <body id="page-top">
-  <!---------------------------- Page Wrapper ------------------------------->
+    <!---------------------------- Page Wrapper ------------------------------->
     <div id="wrapper">
-
         <!------------------- Sidebar -------------------->
          @include('shared.sidebar')
          <!------------------- Sidebar -------------------->
@@ -18,9 +17,6 @@
                     <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-                    {{-- <div class="text-center d-none d-md-inline">
-                        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-                    </div> --}}
                     <!---------------------------- Topbar Search ------------------------->
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
@@ -228,23 +224,36 @@
                             <div class="col-lg-3 col-md-4 col-sm-1">
                                 <!-------------- CARD ----------->
                                 <div class="card border-bottom-primary shadow mb-4">
-                                    <div class="card-header" style="background-color:#4368d7;">
-                                        <a href="" style="color:white">
-                                            <h6 class="font-weight-bold" style="color:#f8f9fc">{{\Illuminate\Support\Str::limit($member->classroom->name, 24)}}</h6>
-                                        </a>
-                                        <a href="#!" style="color:white">
-                                            <h6 style="color:#f8f9fc">{{ $member->classroom->section }}</h6>
+                                    <div class="card-header" style="background-image:url({{url('uploads/class/back1.jpg')}}); background-size: 280px 103px;">
+                                        <a href="/classroom/{{ $member->classroom->id }}" style="color:white">
+                                            <h6 class="font-weight-bold" style="color:#f8f9fc;  font: 18px Arial, sans-serif;">{{\Illuminate\Support\Str::limit($member->classroom->name, 21)}}</h6>
+                                            <h6 style="color:#f8f9fc font: 14px Arial, sans-serif;">{{ $member->classroom->section }}</h6>
                                         </a>
                                         <a href="" style="color:white">
-                                            <h6 style="color:#f8f9fc">{{\Illuminate\Support\Str::limit($member->user->fname." ".$member->user->lname, 24)}}</h6>
+                                            <h6 style="color:#f8f9fc; font: 14px Arial, sans-serif;">{{\Illuminate\Support\Str::limit($member->user->fname." ".$member->user->lname, 21)}}</h6>
                                         </a>
                                     </div>
                                     <a href="">
-                                        <div class="card-body">
+                                        <div class="card-body" style="padding-bottom:0px;">
                                             <div class="text-center">
                                                 <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
                                             </div>
-                                            <p class="text-secondary">Description</p>
+                                            <hr style="margin:0px;">
+                                            <div class="text-right"  >
+                                            <button type="button" class="btn" data-toggle="tooltip" data-placement="top" title="Open Grades for {{ $member->classroom->name}}" >
+                                                    <a href="" style="color: black; text-decoration:none">
+                                                        <i class="fas fa-graduation-cap"></i>
+                                                    </a>
+                                                </button>
+                                                <button type="button" class="btn" data-toggle="tooltip" data-placement="top" title="Google Drive for {{ $member->classroom->name}}">
+                                                    <a href="" style="color: black; margin-left:5px;">
+                                                        <i class="far fa-folder-open"></i>
+                                                    </a>
+                                                </button>
+                                                {{-- <a href="" style="color: black; margin-left:5px;">
+                                                    <i class="far fa-folder"></i>
+                                                </a> --}}
+                                            </div>
                                         </div>
                                     </a>
                                 </div>
@@ -277,67 +286,6 @@
     @include('modals.logout')
     @include('modals.joinClass')
     @include('modals.createClass')
-    <!----------------------------- Create class, Join Class, Logout Modal ------------------------->
-
-
-    <!-- Modal Create Class -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Create Class</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="exampleInput">Class Name</label>
-                        <input type="text" class="form-control" id="exampleInput" placeholder="Enter Class Name">
-                    </div>
-                    <div class="form-group">
-                        <label for="exam">Subject</label>
-                        <input type="text" class="form-control" id="exam" placeholder="Enter Subject Name">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Create Classroom</button>
-            </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Join Class -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Join Class</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="exampleInput">Class Code</label>
-                        <input type="text" class="form-control" id="exampleInput" placeholder="Enter Class Code">
-                        <small id="Help" class="form-text text-muted">Ask your teacher for the class code, then enter it here.</small>
-                    </div>
-                    <h5>To sign in with a class code</h5>
-                    <ul>
-                        <li>Use an authorized account</li>
-                        <li>Use a class code with no spaces or symbols</li>
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Join Classroom</button>
-            </div>
-            </div>
-        </div>
-        </div>
-    </li>
     <!---------------------------------Create class, Join Class, Logout Modal--------------------------->
 
     <!-- Bootstrap core JavaScript-->
@@ -347,12 +295,10 @@
     <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
-    {{-- <script>
-        $('#sidebarToggleTop').click(function() {
-          $('#accordionSidebar').removeClass("toggled");
-
-        });
-    </script> --}}
-
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 </body>
 </html>

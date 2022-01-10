@@ -20,7 +20,7 @@ use App\Http\Controllers\RegisterController;
 
 Route::get('/', function () {
     return view('index');
-});
+})->middleware('guest');
 Route::get('/dashboard', [GeneralController::class, 'index'])->middleware('auth');
 
 Route::get('/login', [SessionController::class, 'create'])->name('login')->middleware('guest');
@@ -31,6 +31,10 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 Route::post('/signup', [RegisterController::class, 'store']);
 
 Route::post('/createClass', [ClassroomController::class, 'store'])->middleware('auth');
+Route::get('/classroom/{classroom}', [ClassroomController::class, 'index'])->middleware('auth');
+Route::get('/people/{people}', [ClassroomController::class, 'show'])->middleware('auth');
+
+
 
 // Route::post('logout', [SessionController::class, 'destroy'])->middleware('auth');
 // Route::get('login', [SessionController::class, 'create'])->middleware('guest');
