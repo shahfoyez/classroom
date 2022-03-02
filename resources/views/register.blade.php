@@ -49,14 +49,14 @@
                                 @csrf
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" name="fname" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
+                                        <input type="text" name="fname" class="form-control form-control-user" id="exampleFirstName" value="{{ old('firstname') }}" placeholder="First Name">
                                         @error('fname')
                                             <p class="error text-danger" style="font-size: 15px; margin-left:10px; margin-top:6px; margin-bottom:0px">{{ "*".$message }}</p>
                                         @enderror
                                     </div>
 
                                     <div class="col-sm-6">
-                                        <input type="text" name="lname" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name">
+                                        <input type="text" name="lname" class="form-control form-control-user" id="exampleLastName" value="{{ old('firstname') }}" placeholder="Last Name">
                                         @error('lname')
                                             <p class="error text-danger" style="font-size: 15px; margin-left:10px; margin-top:6px; margin-bottom:0px">{{ "*".$message }}</p>
                                         @enderror
@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="text" name="username" class="form-control form-control-user" id="exampleFirstName" placeholder="Username">
+                                    <input type="text" name="username" class="form-control form-control-user" id="exampleFirstName" value="{{ old('firstname') }}" placeholder="Username">
                                     @error('username')
                                         <p class="error text-danger" style="font-size: 15px; margin-left:10px; margin-top:6px; margin-bottom:0px">{{ "*".$message }}</p>
                                     @enderror

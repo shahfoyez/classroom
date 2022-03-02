@@ -1,7 +1,35 @@
 @include('shared.header')
 
 <body id="page-top">
-    @yield('content')
+    <div id="wrapper">
+
+        @if (!request()->is('studentsWork/*'))
+        <!------------------- Sidebar -------------------->
+        @include('shared.sidebar')
+        <!------------------- Sidebar -------------------->
+        @endif
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content" style="background-color: #ffffff;">
+                <!-- Topbar -->
+                @include('navbars.navBar')
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                @yield('content')
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!--------------- Footer ------------------->
+            @include('shared.footer')
+            <!---------------- Footer ------------------->
+
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
@@ -11,6 +39,8 @@
     @include('modals.logout')
     @include('modals.joinClass')
     @include('modals.createClass')
+    @include('modals.imageModal')
+
     <!---------------------------------Create class, Join Class, Logout Modal--------------------------->
 
     <!-- Bootstrap core JavaScript-->
@@ -24,6 +54,22 @@
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
+    </script>
+    <script>
+        $(document).ready( function () {
+            $('#myTable').DataTable({
+                "order": [[ 0, "desc" ]],
+                "columnDefs": [
+                    { "orderable": false, "targets": [1, 4]}
+                ]
+            });
+        } );
+    </script>
+    <script>
+        function onClick(element) {
+          document.getElementById("img01").src = element.src;
+          document.getElementById("modal01").style.display = "block";
+        }
     </script>
 </body>
 </html>

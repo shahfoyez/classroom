@@ -1,6 +1,62 @@
 .vl {
-    border-left: 1px solid rgb(184, 182, 182);
+    border-left: 1px solid rgb(217 217 217);
     height: 800px;
+}
+table td input {
+    height: 100%;
+    width: 100%;
+    border: none;
+    box-sizing: border-box;
+}
+body {
+    color: #505050;
+}
+.graded{
+    color: rgb(58, 66, 175);
+}
+h6 .submitted{
+    color: green;
+}
+h6 .missing{
+    color: rgb(172, 16, 16);
+}
+h6 .late{
+    color: rgb(218, 205, 27);
+}
+.submitted h1 {
+    color: green;
+}
+.submitted h6{
+    color: green;
+}
+.missing h1{
+    color: rgb(172, 16, 16);
+}
+.missing h6{
+    color: rgb(172, 16, 16);
+}
+.late h1{
+    color: rgb(218, 205, 27);
+}
+.late h6{
+    color: rgb(218, 205, 27);
+}
+.graded h1{
+    color: rgb(58, 66, 175);
+}
+.graded h6 .graded{
+    color: rgb(58, 66, 175);
+}
+.table td{
+     vertical-align: middle;
+}
+.my-custom-scrollbar {
+    position: relative;
+    height: 540px;
+    overflow: auto;
+    }
+    .table-wrapper-scroll-y {
+    display: block;
 }
 
 @media only screen and (max-width: 992px) {
@@ -9,5 +65,6 @@
         border-left: 0px;
     }
 }
+
 
 

@@ -11,6 +11,12 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    {{-- @if ($errors->any())
+                    <div class="alert alert-warning" role="alert" style=" margin:0px;">
+                        <p class="error text-danger" style="font-size: 14px; margin-bottom:0px;">You have some Validation error!</p>
+                    </div>
+
+                    @endif --}}
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="exampleInput">Class Name</label>

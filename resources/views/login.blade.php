@@ -60,13 +60,13 @@
                             @enderror
 
                         <div class="form-group">
-                            <input type="email" name="email" class="form-control form-control-user" placeholder="Enter Email Address...">
+                            <input type="email" name="email" class="form-control form-control-user" value="{{ old('firstname') }}" placeholder="Enter Email Address...">
                             @error('email')
                                 <p class="error text-danger" style="font-size: 15px; margin-left:10px; margin-top:6px; margin-bottom:0px">{{ "*".$message }}</p>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <input type="password" name="password" class="form-control form-control-user" placeholder="Password">
+                            <input type="password" name="password" class="form-control form-control-user" value="{{ old('firstname') }}" placeholder="Password">
                             @error('password')
                                 <p class="error text-danger" style="font-size: 15px; margin-left:10px; margin-top:6px; margin-bottom:0px">{{ "*".$message }}</p>
                             @enderror

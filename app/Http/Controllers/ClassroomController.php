@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\Classroom;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Models\ClassroomMember;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreClassroomRequest;
 use App\Http\Requests\UpdateClassroomRequest;
 
@@ -18,7 +21,6 @@ class ClassroomController extends Controller
     public function index(Classroom $classroom)
     {
         // dd($classroom);
-        // dd(Str::random(5));
         $member =ClassroomMember::get()->where('user_id', auth()->user()->id);
         return view('classroom', [
             'classroomMember' => $member,
@@ -33,10 +35,13 @@ class ClassroomController extends Controller
      */
     public function show(Classroom $classroom)
     {
+        $peoples= ClassroomMember::all()->where('classroom_id', $classroom->id);
+        // dd($peoples);
         $member =ClassroomMember::get()->where('user_id', auth()->user()->id);
         return view('people', [
             'classroomMember' => $member,
-            'classroom' => $classroom
+            'classroom' => $classroom,
+            'peoples' => $peoples
         ]);
     }
 
@@ -48,6 +53,28 @@ class ClassroomController extends Controller
     public function create()
     {
         //
+    }
+    public function joinClass(Request $request)
+    {
+        $attributes=request()->validate([
+            'classCode'=> 'required | exists:classrooms,code'
+        ]);
+        $classroom= Classroom::firstWhere('code', $request->classCode);
+        $classroomId=$classroom->id;
+        $user= ClassroomMember::where('user_id', '=', auth()->user()->id)
+            ->where('classroom_id', '=',  $classroomId)
+            ->get()->count();
+        // dd($user);
+        if($user>0){
+            return redirect('/dashboard')->with('message', 'You are already a member');
+        }else{
+            $joinClass= ClassroomMember::create([
+                'user_id'=> auth()->user()->id,
+                'classroom_id'=> $classroomId,
+                'is_teacher'=> 0
+            ]);
+        }
+        return redirect('/dashboard')->with('message', 'Joined Class Successfully');
     }
 
     /**
@@ -77,7 +104,7 @@ class ClassroomController extends Controller
             'is_teacher'=> 1
         ]);
 
-        return redirect('/dashboard')->with('success', 'Class Added Successfully');
+        return redirect('/dashboard')->with('message', 'Class Added Successfully');
     }
 
     /**
