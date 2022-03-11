@@ -125,7 +125,7 @@
             <!-- Right -->
             <div class="col-lg-8 vl v p-4 mt-sm-2" style="height: 600px;">
                 <div class="col-lg-12">
-                    <h3><i class="fa fa-book" aria-hidden="true"></i> Assignment Name</h3>
+                    <h3><i class="fa fa-book" aria-hidden="true"></i> {{ $assignment->title }}</h3>
                 </div>
                 <div class="col">
                     <ul class="navbar-nav">
@@ -187,6 +187,12 @@
                             </div>
                             <!-- Submission Card-->
                         @endforeach
+                    @else
+                    <div class="col-12">
+                        <div class="alert alert-primary" role="alert" style="margin-left:0px; margin-right: 35px;">
+                            No submission found!
+                        </div>
+                    </div>
                     @endif
                 </div>
             </div>

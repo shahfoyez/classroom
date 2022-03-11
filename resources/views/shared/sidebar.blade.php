@@ -24,22 +24,30 @@
         <div class="sidebar-heading">
             Teaching
         </div>
-        <li class="nav-item">
-            <a class="nav-link" href="charts.html">
-                <i class="fas fa-money-check"></i>
-                <span>To Review</span>
-            </a>
-        </li>
+        @php
+            $teNum=0;
+        @endphp
         @foreach ($classroomMember as $member)
             @if ($member->is_teacher)
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-copyright"></i>
-                    <span>{{\Illuminate\Support\Str::limit($member->classroom->name, 20)}}</span>
-                </a>
-            </li>
+                @php
+                    $teNum=1;
+                @endphp
+                <li class="nav-item">
+                    <a class="nav-link" href="/classroom/{{ $member->classroom->id }}">
+                        <i class="fas fa-copyright"></i>
+                        <span>{{\Illuminate\Support\Str::limit($member->classroom->name, 20)}}</span>
+                    </a>
+                </li>
             @endif
         @endforeach
+        @if ($teNum==0)
+            <li class="nav-item">
+                <a class="nav-link" href="">
+                <i class="fas fa-copyright"></i>
+                <span>No Class</span></a>
+            </li>
+        @endif
+
         <!-- Divider -->
         <hr class="sidebar-divider">
 
@@ -47,22 +55,28 @@
         <div class="sidebar-heading">
             Enrolled
         </div>
-        <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link" href="charts.html">
-            {{-- <i class="fas fa-fw fa-chart-area"></i> --}}
-            <i class="fas fa-tasks"></i>
-            <span>To Do</span></a>
-        </li>
+        @php
+            $enNum=0;
+        @endphp
         @foreach ($classroomMember as $member)
             @if ($member->is_teacher==0)
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                <i class="fas fa-copyright"></i>
-                <span>{{\Illuminate\Support\Str::limit($member->classroom->name, 20)}}</span></a>
-            </li>
+                @php
+                    $enNum=1;
+                @endphp
+                <li class="nav-item">
+                    <a class="nav-link" href="/classroom/{{ $member->classroom->id }}">
+                    <i class="fas fa-copyright"></i>
+                    <span>{{\Illuminate\Support\Str::limit($member->classroom->name, 20)}}</span></a>
+                </li>
             @endif
         @endforeach
+        @if ($enNum==0)
+            <li class="nav-item">
+                <a class="nav-link" href="">>
+                <i class="fas fa-copyright"></i>
+                <span>No Class</span></a>
+            </li>
+        @endif
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">

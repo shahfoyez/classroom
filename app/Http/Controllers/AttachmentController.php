@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attachment;
+use App\Models\IndustryWorkSubmit;
 use App\Models\AssignmentSubmission;
 use App\Http\Requests\StoreAttachmentRequest;
 use App\Http\Requests\UpdateAttachmentRequest;
@@ -38,6 +39,13 @@ class AttachmentController extends Controller
     public function getPdf(AssignmentSubmission $submission )
     {
         $path=$submission->assignmentAttachment->path;
+        return view('pdf', [
+            'path' => $path
+        ]);
+    }
+    public function getworkPdf(IndustryWorkSubmit $submission )
+    {
+        $path=$submission->attachment_path;
         return view('pdf', [
             'path' => $path
         ]);

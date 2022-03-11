@@ -1,18 +1,19 @@
 <?php
 
+use App\Models\IndustryWork;
 use App\Models\AssignmentSubmission;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\GradeController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\AttachmentController;
-use App\Http\Controllers\AssignmentSubmissionController;
-use App\Http\Controllers\GradeController;
 use App\Http\Controllers\IndustryWorkController;
-use App\Models\IndustryWork;
+use App\Http\Controllers\IndustryWorkSubmitController;
+use App\Http\Controllers\AssignmentSubmissionController;
 
 Route::get('/', function () {
     return view('index');
@@ -45,14 +46,21 @@ Route::post('/gradeSubmit/{assignmentSubmission}', [GradeController::class, 'sto
 
 
 Route::get('{filename}', [AttachmentController::class, 'getFile'])->name('getfile');
-Route::get('viewPdf/{submission}', [AttachmentController::class, 'getPdf']);
+Route::get('/viewPdf/{submission}', [AttachmentController::class, 'getPdf']);
+Route::get('/viewWorkPdf/{submission}', [AttachmentController::class, 'getWorkPdf']);
+
 
 Route::get('/industry/industryWorkCreate', [IndustryWorkController::class, 'create'])->middleware('auth');
 Route::post('/industryWork', [IndustryWorkController::class, 'store'])->middleware('auth');
 Route::get('/industryWorkView/{classroom}', [IndustryWorkController::class, 'view'])->middleware('auth');
-Route::get('/addedWorkView/{classroom}', [IndustryWorkController::class, 'addedWorkview'])->middleware('auth');
+Route::get('/relatedWorkView/{classroom}', [IndustryWorkController::class, 'relatedWorkview'])->middleware('auth');
 
 Route::get('/workAddToClass/{classroom}/{work}', [IndustryWorkController::class, 'workAddToClass'])->middleware('auth');
+
+Route::get('/industryWorkSubmit/{industryWork}', [IndustryWorkSubmitController::class, 'create'])->middleware('auth');
+Route::post('/industryWorkSubmit/{industryWork}', [IndustryWorkSubmitController::class, 'store'])->middleware('auth');
+
+
 
 
 

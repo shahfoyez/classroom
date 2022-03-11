@@ -12,7 +12,8 @@ class GeneralController extends Controller
     public function index()
     {
         $member =ClassroomMember::get()->where('user_id', auth()->user()->id);
-        $industryWork= IndustryWork::get()->where('user_id', auth()->user()->id);
+        // dd($member);
+        $industryWork= IndustryWork::get()->where('user_id', auth()->user()->id)->sortByDesc("created_at");
         if(auth()->user()->role!=3){
             return view('dashboard', [
                 'classroomMember' => $member

@@ -1,21 +1,21 @@
 @extends('layouts.general.generalMaster')
 
 @section('content')
-    @error('assignment')
-    <div class="alert alert-warning ml-5 mr-5" role="alert" >
-        <p class="error text-danger" style="font-size: 15px; margin-bottom:0px">{{ $message }}</p>
-    </div>
-    @enderror
-    @if (session()->has('message'))
-        <div x-data="{ show:true }"
-            x-init="setTimeout(() => show = false, 4000)"
-            x-show="show"
-            class="alert alert-success pb-0 ml-5 mr-5">
-            <p>{{ session('message') }}</p>
-        </div>
-    @endif
     <!-- Begin Page Content -->
     <div class="container mx-auto shadow-sm mb-5 pt-3 " style="min-height: 525px; margin-top: 30px">
+        @error('assignment')
+        <div class="alert alert-warning" role="alert">
+            <p class="error text-danger" style="font-size: 15px; margin-bottom:0px">{{ $message }}</p>
+        </div>
+        @enderror
+        @if (session()->has('message'))
+            <div x-data="{ show:true }"
+                x-init="setTimeout(() => show = false, 4000)"
+                x-show="show"
+                class="alert alert-success pb-0">
+                <p>{{ session('message') }}</p>
+            </div>
+        @endif
         <div class="row m-2">
              <!-- Assignment Details -->
             <div class="{{ $assignment->post->user->id == auth()->user()->id ? 'col-lg-10' : 'col-lg-8'}} ">
@@ -23,17 +23,6 @@
                     <h1 class="text-primary">
                         <i class="fas fa-clipboard-list"></i> {{ $assignment->title }}
                     </h1>
-                    <h6 class="ml-auto float-right font-weight-bold pt-2">
-                        @foreach ($assignment->assignmentSubmission as $submission)
-                            @if(auth()->user()->id == $submission->user_id)
-                                @if($submission->grade)
-                                    {{ "You Got ".$submission->grade->points."/".$assignment->points }}
-                                @else
-                                    {{ "Not Graded" }}
-                                @endif
-                            @endif
-                        @endforeach
-                    </h6>
                 </div>
                 <div class="row ml-4">
                     <p class="text-dark mr-3"><i class="fas fa-user-tie"></i> {{ $assignment->post->user->fname." ".$assignment->post->user->lname }}</p>
@@ -93,7 +82,7 @@
             </div>
             <!-- Assignment Details End -->
             <!-- Submit cards -->
-            @if($assignment->post->user->id != auth()->user()->id)
+            {{-- @if($assignment->post->user->id != auth()->user()->id)
             <div class="col-lg-4">
                 <form class="user" method="post" action="/assignmentSubmit/{{ $assignment->id }}" enctype="multipart/form-data">
                     @csrf
@@ -117,8 +106,8 @@
 
                         @if($submitted==1)
                             <iframe src="{{ asset('uploads/classrooms/assignments/'.$submission->assignmentAttachment->path) }}" id="pdf-view" height="140" frameborder="0px" title="Preview" style="margin-bottom: 20px; border: 1px solid black;"></iframe>
-                            <a href='/viewPdf/{{ $submission->id }}' class="btn btn-outline-dark btn-block mb-3" >
-                                <i class="fas fa-check"></i> View
+                            <a class="btn btn-outline-dark btn-block mb-3" >
+                                <i class="fas fa-check"></i> Submitted
                             </a>
                         @else
                             <a class="btn btn-outline-dark btn-block mb-3" href="#" role="button"    id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -149,7 +138,7 @@
                     </div>
                 </div>
             </div>
-            @endif
+            @endif --}}
             <!-- Submit Cart End -->
         </div>
     </div>
