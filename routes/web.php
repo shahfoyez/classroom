@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\IndustryWork;
-use App\Models\AssignmentSubmission;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\GradeController;
@@ -57,33 +55,15 @@ Route::get('/relatedWorkView/{classroom}', [IndustryWorkController::class, 'rela
 
 Route::get('/workAddToClass/{classroom}/{work}', [IndustryWorkController::class, 'workAddToClass'])->middleware('auth');
 
-Route::get('/industryWorkSubmit/{industryWork}', [IndustryWorkSubmitController::class, 'create'])->middleware('auth');
-Route::post('/industryWorkSubmit/{industryWork}', [IndustryWorkSubmitController::class, 'store'])->middleware('auth');
+Route::get('/industryWorkIndustryView/{industryWork}', [IndustryWorkSubmitController::class, 'industryView'])->middleware('auth');
+Route::get('/industryWorkTeacherView/{industryWork}/{classroom}', [IndustryWorkSubmitController::class, 'create'])->middleware('auth');
+
+Route::get('/industryWorkSubmit/{industryWork}/{classroom}', [IndustryWorkSubmitController::class, 'create'])->middleware('auth');
+Route::post('/industryWorkSubmit/{industryWork}/{classroom}', [IndustryWorkSubmitController::class, 'store'])->middleware('auth');
+Route::get('/industryWork/{industryWork}/{classroom}', [IndustryWorkSubmitController::class, 'index'])->middleware('auth');
+Route::post('/industryGradeSubmit/{industryWorkSubmit}', [IndustryWorkSubmitController::class, 'industryGradeSubmit'])->middleware('auth');
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Route::post('logout', [SessionController::class, 'destroy'])->middleware('auth');
-// Route::get('login', [SessionController::class, 'create'])->middleware('guest');
-// Route::post('sessions', [SessionController::class, 'store'])->middleware('guest');
-// General Registration
 
 

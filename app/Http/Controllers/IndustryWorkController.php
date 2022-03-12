@@ -7,6 +7,7 @@ use App\Models\Attachment;
 use App\Models\IndustryWork;
 use Illuminate\Http\Request;
 use App\Models\ClassroomMember;
+use App\Models\ClassIndustryWork;
 use App\Http\Requests\StoreIndustryWorkRequest;
 use App\Http\Requests\UpdateIndustryWorkRequest;
 
@@ -30,20 +31,40 @@ class IndustryWorkController extends Controller
     public function view(Classroom $classroom)
     {
         // dd($classroom);
+        // dd($industryWorks->iw_id);
         $curMember =ClassroomMember::get()->where('user_id', auth()->user()->id);
-        $industryWork =IndustryWork::get()->where('classroom_id', $classroom->id)->sortByDesc("created_at");
-        return view('addedWorkView', [
+        $industryWorks = $classroom->classIndustryWork;
+        return view('addedWorkView1', [
             'classroomMember' => $curMember,
-            'industryWorks'   => $industryWork,
+            'industryWorks' => $industryWorks,
             'classroom'       => $classroom
         ]);
+
+        // $curMember =ClassroomMember::get()->where('user_id', auth()->user()->id);
+        // $industryWork =IndustryWork::get()->where('classroom_id', $classroom->id)->sortByDesc("created_at");
+        // dd($industryWork);
+        // return view('addedWorkView', [
+        //     'classroomMember' => $curMember,
+        //     'industryWorks'   => $industryWork,
+        //     'classroom'       => $classroom
+        // ]);
     }
     public function relatedWorkView(Classroom $classroom)
     {
-        //  dd($classroom);
+        // //  dd($classroom);
+        // $curMember =ClassroomMember::get()->where('user_id', auth()->user()->id);
+        // $industryWorks = $classroom->classIndustryWork;
+        // return view('relatedWorkView', [
+        //     'classroomMember' => $curMember,
+        //     'industryWorks'   => $industryWorks,
+        //     'classroom'       => $classroom
+        // ]);
+
+        //  dd($classroom->classIndustryWork);
          $curMember =ClassroomMember::get()->where('user_id', auth()->user()->id);
          $industryWork =IndustryWork::get()->where('subject', $classroom->subject)->sortByDesc("created_at");
-         return view('relatedWorkView', [
+        //  dd($classroom);
+         return view('relatedWorkView1', [
              'classroomMember' => $curMember,
              'industryWorks'   => $industryWork,
              'classroom'       => $classroom
@@ -51,6 +72,10 @@ class IndustryWorkController extends Controller
     }
     public function workAddToClass(Classroom $classroom, IndustryWork $work)
     {
+        $industryWork= ClassIndustryWork::create([
+            'iw_id'       => $work->id,
+            'classroom_id' => $classroom->id
+        ]);
         $update= IndustryWork::where('id',$work->id)->update(['classroom_id'=> $classroom->id]);
         return redirect('/industryWorkView/'.$classroom->id)->with('message', 'Work Added Successfully');
     }

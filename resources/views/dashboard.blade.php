@@ -150,7 +150,7 @@
                                                         @endif
                                                     </div>
                                                     <hr class="p-2">
-                                                    <a href="/industryWorkSubmit/{{ $work->id }}" class="card-link">View Work</a>
+                                                    <a href="/industryWorkIndustryView/{{ $work->id }}" class="card-link">View Work</a>
                                                 </div>
                                             </div>
                                         </div>

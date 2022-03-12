@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon ">
         <img style="height:60px; width:60px;" class="" src="{{ asset('/img/logo/logo1.png') }}" alt="">
         </div>
-        <div class="sidebar-brand-text mx-3">KOSAI <sup>3</sup></div>
+        <div class="sidebar-brand-text mx-3">ACASTRY</div>
     </a>
     @if(auth()->user()->role!=3)
         <!-- Divider -->

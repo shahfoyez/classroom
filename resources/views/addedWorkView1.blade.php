@@ -25,7 +25,7 @@
                 @if($industryWorks->count()>0)
                     @foreach ($industryWorks as $work)
                         <?php $col++ ?>
-                        @if($work->count()>0)
+                        @if($work->industryWork->count()>0)
 
                         <!-- Card -->
                         <div class="col-lg-11" style="margin-left: 20px">
@@ -36,7 +36,7 @@
                                             <div class="card collapsed" type="card" data-toggle="collapse" data-target="#collapse{{ $col }}" aria-expanded="false" aria-controls="collapseTwo">
                                                 <div class="card-body">
                                                     <img src="{{ asset('img/icon.png') }}" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
-                                                    <a class="text-decoration-none" href="#">{{ $work->title." (".$work->user->fname." ".$work->user->lname.")" }}</a>
+                                                    <a class="text-decoration-none" href="#">{{ $work->industryWork->title." (".$work->industryWork->user->fname." ".$work->industryWork->user->lname.")" }}</a>
                                                     <div class="dropdown no-arrow float-right">
                                                         <a class="btn btn-circle d-inline dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-dark"></i>
@@ -47,17 +47,17 @@
                                                         </div>
                                                     </div>
                                                     <em class="text-muted d-inline float-right">
-                                                        @if($work->due_date && $work->due_time)
-                                                            @if(date('Y-m-d') > $work->due_date)
-                                                                {{ "Exceded ".Carbon\Carbon::parse($work->due_date)->format('M d, Y')}}
-                                                            @elseif(date('Y-m-d') == $work->due_date)
-                                                                @if (date("H:i:s") >= $work->due_date)
-                                                                    {{ "Exceded ".Carbon\Carbon::parse($work->due_date)->format('M d, Y')}}
+                                                        @if($work->industryWork->due_date && $work->industryWork->due_time)
+                                                            @if(date('Y-m-d') > $work->industryWork->due_date)
+                                                                {{ "Exceded ".Carbon\Carbon::parse($work->industryWork->due_date)->format('M d, Y')}}
+                                                            @elseif(date('Y-m-d') == $work->industryWork->due_date)
+                                                                @if (date("H:i:s") >= $work->industryWork->due_date)
+                                                                    {{ "Exceded ".Carbon\Carbon::parse($work->industryWork->due_date)->format('M d, Y')}}
                                                                 @else
-                                                                    {{ "Due Today ".Carbon\Carbon::parse($work->due_time)->format('g:i A')}}
+                                                                    {{ "Due Today ".Carbon\Carbon::parse($work->industryWork->due_time)->format('g:i A')}}
                                                                 @endif
                                                             @else
-                                                                {{ "Due ".Carbon\Carbon::parse($work->due_date)->format('D m').", ".Carbon\Carbon::parse($work->due_time)->format('g:i A') }}
+                                                                {{ "Due ".Carbon\Carbon::parse($work->industryWork->due_date)->format('D m').", ".Carbon\Carbon::parse($work->industryWork->due_time)->format('g:i A') }}
                                                             @endif
                                                         @else
                                                             {{ "No due date" }}
@@ -70,21 +70,21 @@
                                             <div class="card-body">
                                                 <div class="container-fluid">
                                                     <h6 style="font-size: 13px;">
-                                                        {{ "Posted ".Carbon\Carbon::parse($work->created_at)->format('D m').", ".Carbon\Carbon::parse($work->created_at)->format('g:i A') }}
+                                                        {{ "Posted ".Carbon\Carbon::parse($work->industryWork->created_at)->format('D m').", ".Carbon\Carbon::parse($work->industryWork->created_at)->format('g:i A') }}
                                                     </h6>
                                                     <p>
-                                                        {{ $work->instruction }}
+                                                        {{ $work->industryWork->instruction }}
                                                     </p>
-                                                    @if($work->image)
+                                                    @if($work->industryWork->image)
                                                     <div class="card mb-3 ml-2" style="max-width: 400px; max-height:100px;">
                                                         <div class="row no-gutters">
                                                             <div class="col-md-4">
-                                                                <img  src="{{ asset('uploads/classrooms/attachments/'.$work->image) }}" style="width:100%; cursor:pointer"
+                                                                <img  src="{{ asset('uploads/classrooms/attachments/'.$work->industryWork->image) }}" style="width:100%; cursor:pointer"
                                                                     onclick="onClick(this)" class="w3-hover-opacity">
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <div class="card-body">
-                                                                    <h5 class="card-title "><a href="{{ route('getfile', 'uploads/classrooms/attachments/'.$work->image) }}">{{ $work->image }}</a>
+                                                                    <h5 class="card-title "><a href="{{ route('getfile', 'uploads/classrooms/attachments/'.$work->industryWork->image) }}">{{ $work->industryWork->image }}</a>
                                                                     </h5>
                                                                 </div>
                                                             </div>
@@ -93,7 +93,7 @@
                                                     @endif
                                                 </div>
                                                 <hr class="p-2">
-                                                <a href="/industryWorkSubmit/{{ $work->id }}" class="card-link">View Work</a>
+                                                <a href="/industryWorkSubmit/{{ $work->industryWork->id }}/{{ $classroom->id }}" class="card-link">View Work</a>
                                             </div>
                                         </div>
                                     </div>

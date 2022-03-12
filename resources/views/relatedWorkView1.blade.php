@@ -66,12 +66,13 @@
                                                     @php
                                                         $workExist=0;
                                                     @endphp
-                                                        @if ($work->classroom_id == $classroom->id)
+                                                    @foreach ($classroom->classIndustryWork as $addedWork)
+                                                        @if ($addedWork->iw_id == $work->id)
                                                             @php
                                                                 $workExist=1;
                                                             @endphp
                                                         @endif
-
+                                                    @endforeach
                                                     @if ($workExist==1)
                                                         <i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
                                                     @endif
@@ -124,15 +125,17 @@
                                                 @endif
                                             </div>
                                             <hr class="p-2">
-                                            <a href="/workSubmitPage/{{ $work->id }}/{{ $classroom->id }}" class="card-link">View Work</a>
+                                            <a href="/industryWorkTeacherView/{{ $work->id }}/{{ $classroom->id }}" class="card-link">View Work</a>
                                             @php
                                                 $workExist=0;
                                             @endphp
-                                            @if ($work->classroom_id == $classroom->id)
-                                                @php
-                                                    $workExist=1;
-                                                @endphp
-                                            @endif
+                                            @foreach ($classroom->classIndustryWork as $addedWork)
+                                                @if ($addedWork->iw_id == $work->id)
+                                                    @php
+                                                        $workExist=1;
+                                                    @endphp
+                                                @endif
+                                            @endforeach
                                             @if ($workExist==1)
                                                 <a href="#" class="card-link" style="color: green;">Added</a>
                                             @else

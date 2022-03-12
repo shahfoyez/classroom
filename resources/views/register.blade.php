@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>KOSAI</title>
+  <title>ACASTRY</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -26,7 +26,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand mr-auto mt-2 mt-lg-0" href="#">KOSAI<sup>3</sup> CLASSROOM</a>
+            <a class="navbar-brand mr-auto mt-2 mt-lg-0" href="#">ACASTRY CLASSROOM</a>
             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             <a href="/login" class="btn btn-outline-success my-2 my-sm-0" type="submit">Log In</a>
         </div>

@@ -2,12 +2,12 @@
 
 <body id="page-top">
     <div id="wrapper">
-
-        @if (!request()->is('studentsWork/*'))
+        @if (!(request()->is('studentsWork/*') || request()->is('industryWork/*')))
         <!------------------- Sidebar -------------------->
         @include('shared.sidebar')
         <!------------------- Sidebar -------------------->
         @endif
+
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->

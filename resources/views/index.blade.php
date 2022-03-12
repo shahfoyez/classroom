@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Open Classroom - Home</title>
+  <title>ACASTRY - Home</title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
 
@@ -48,7 +48,7 @@
   <header id="header" class="fixed-top header-transparent" style="background-color: #ffffff;">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo mr-auto bold"><a href="index.html">KOSAI<sup>3</sup> Classroom</a></h1>
+      <h1 class="logo mr-auto bold"><a href="index.html">ACASTRY Classroom</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 

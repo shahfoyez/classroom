@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\IndustryWork;
 use App\Models\ClassroomMember;
+use App\Models\ClassIndustryWork;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -13,7 +14,7 @@ class Classroom extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $with=['user','post'];
+    protected $with=['user','post','classIndustryWork'];
     public function classroomMember(){
         return $this->belongsTo(ClassroomMember::class, 'classroom_id');
     }
@@ -23,7 +24,7 @@ class Classroom extends Model
     public function user(){
         return $this->belongsTo(User::class, 'created_by');
     }
-    // public function industryWork(){
-    //     return $this->hasMany(IndustryWork::class, 'classroom_id');
-    // }
+    public function classIndustryWork(){
+        return $this->hasMany(ClassIndustryWork::class, 'classroom_id');
+    }
 }
