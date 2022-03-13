@@ -40,6 +40,9 @@
                     @if ($industryWork->industryWorkSubmission->count()>0)
                         {{-- Submissions against a assignment --}}
                         @foreach ($industryWork->industryWorkSubmission as $submission)
+                            @if(($submission->user->id == $classroom->user->id) && auth()->user()->role!=3)
+                                @continue
+                            @endif
                             <tbody>
                                 <tr>
                                     <td>

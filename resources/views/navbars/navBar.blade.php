@@ -1,12 +1,12 @@
 <!-- Topbar -->
-<nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow-sm" style="height: 60px; margin-bottom: 10px;">
+<nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow-sm" style="height: 60px;">
     <!------------------------ Sidebar Toggle (Topbar) ------------------------->
     <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
         <i class="fa fa-bars"></i>
     </button>
     <div style="min-width: 210px">
         @if(auth()->user()->role==3)
-            <a href="/classroom/{{ $industryWork->id }}" style="text-decoration: none;"><h6 style="color:#3762e2; text-decoration: none; font: 14px Arial, sans-serif; padding-top: 5px;">{{ $industryWork->title }}</h6></a>
+            <a href="/industryWorkIndustryView/{{ $industryWork->id }}" style="text-decoration: none;"><h6 style="color:#3762e2; text-decoration: none; font: 14px Arial, sans-serif; padding-top: 5px;">{{ $industryWork->title }}</h6></a>
         @else
             <a href="/classroom/{{ $classroom->id }}" style="text-decoration: none;"><h6 style="color:#3762e2; text-decoration: none; font: 14px Arial, sans-serif; padding-top: 5px;">{{ $classroom->name." "."(".$classroom->section.")" }}</h6></a>
         @endif
@@ -36,8 +36,23 @@
                 </div>
             </li>
         </ul>
-
-        @elseif (request()->is('industryWorkSubmit/*') || request()->is('industryWorkIndustryView/*') && (auth()->user()->id==$classroom->created_by || auth()->user()->id==$industryWork->user_id) || request()->is('industryWork/*'))
+        @elseif (request()->is('industryWork/*') && auth()->user()->role==3)
+        <ul class="navbar-nav" style="margin-left: 290px">
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow" style="align:center" style="align:center">
+                <div class="collapse navbar-collapse align-left" id="navbarNav" style="align:center">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/industryWorkIndustryView/{{ $industryWork->id }}" style="color:{{ request()->is('industryWorkSubmit/*') || request()->is('industryWorkIndustryView/*') ? 'blue' : 'black' }};"><b>Instruction</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/industryWork/{{ $industryWork->id }}/{{$classroom->id}}" style="color:{{ request()->is('industryWorkSubmission/*') || request()->is('industryWork/*') ? 'blue' : 'black' }}"><b>Submissions</b></a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        @elseif ((request()->is('industryWorkSubmit/*') || request()->is('industryWorkIndustryView/*')) && (auth()->user()->id==$classroom->created_by || auth()->user()->id==$industryWork->user_id) || (request()->is('industryWork/*') && auth()->user()->role!=3))
         <ul class="navbar-nav" style="
             @if(request()->is('industryWorkSubmit/*') || request()->is('industryWorkIndustryView/*'))
                 {{ 'margin-left: 193px' }}
@@ -50,7 +65,7 @@
                 <div class="collapse navbar-collapse align-left" id="navbarNav" style="align:center">
                     <ul class="nav justify-content-center">
                         <li class="nav-item ">
-                            <a class="nav-link" href="/assignmentSubmitPage/{{ $industryWork->id }}" style="color:{{ request()->is('industryWorkSubmit/*') || request()->is('industryWorkIndustryView/*') ? 'blue' : 'black' }};"><b>Instructions</b></a>
+                            <a class="nav-link" href="/industryWorkSubmit/{{ $industryWork->id }}/{{ $classroom->id }}" style="color:{{ request()->is('industryWorkSubmit/*') || request()->is('industryWorkIndustryView/*') ? 'blue' : 'black' }};"><b>Instructions</b></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/industryWork/{{ $industryWork->id }}/{{$classroom->id}}" style="color:{{ request()->is('industryWorkSubmission/*') || request()->is('industryWork/*') ? 'blue' : 'black' }}"><b>Submissions</b></a>

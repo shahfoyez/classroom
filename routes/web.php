@@ -12,6 +12,7 @@ use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\IndustryWorkController;
 use App\Http\Controllers\IndustryWorkSubmitController;
 use App\Http\Controllers\AssignmentSubmissionController;
+use App\Http\Controllers\CommentController;
 
 Route::get('/', function () {
     return view('index');
@@ -62,6 +63,9 @@ Route::get('/industryWorkSubmit/{industryWork}/{classroom}', [IndustryWorkSubmit
 Route::post('/industryWorkSubmit/{industryWork}/{classroom}', [IndustryWorkSubmitController::class, 'store'])->middleware('auth');
 Route::get('/industryWork/{industryWork}/{classroom}', [IndustryWorkSubmitController::class, 'index'])->middleware('auth');
 Route::post('/industryGradeSubmit/{industryWorkSubmit}', [IndustryWorkSubmitController::class, 'industryGradeSubmit'])->middleware('auth');
+Route::post('/assignmentComment/{assignment}/{classroom}', [CommentController::class, 'store'])->middleware('auth');
+
+
 
 
 

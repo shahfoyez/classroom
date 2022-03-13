@@ -89,16 +89,39 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Works</span></a>
         </li>
-
         <!-- Divider -->
         <hr class="sidebar-divider">
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
             <a class="nav-link" href="/dashboard">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Submissions</span></a>
+            <i class="fas fa-tasks"></i>
+            <span>Your Works</span></a>
         </li>
+        @php
+            $iwNum=0;
+        @endphp
+        @foreach ($industryWorks as $work)
+            @if ($work)
+                @php
+                    $iwNum=1;
+                @endphp
+                <li class="nav-item">
+                    <a class="nav-link" href="/industryWorkIndustryView/{{ $work->id }}">
+                        <i class="fas fa-copyright"></i>
+                        <span>{{\Illuminate\Support\Str::limit($work->title, 20)}}</span>
+                    </a>
+                </li>
+            @endif
+        @endforeach
+        @if ($iwNum==0)
+            <li class="nav-item">
+                <a class="nav-link" href="">
+                <i class="fas fa-copyright"></i>
+                <span>No Work</span></a>
+            </li>
+        @endif
+
 
         <!-- Divider -->
         <hr class="sidebar-divider">

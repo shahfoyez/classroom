@@ -10,9 +10,12 @@ class ClassIndustryWork extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    // protected $with=['industryWork'];
+    // protected $with=['comments'];
 
     public function industryWork(){
         return $this->belongsTo(IndustryWork::class, 'iw_id');
     }
+    // public function comments(){
+    //     return $this->hasMany(Comment::class, 'ciw_id');
+    // }
 }

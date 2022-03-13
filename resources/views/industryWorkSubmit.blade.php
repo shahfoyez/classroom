@@ -25,13 +25,13 @@
                     </h1>
                     <h6 class="ml-auto float-right font-weight-bold pt-2">
                         @foreach ($industryWork->industryWorkSubmission as $submission)
-                            @if(auth()->user()->id == $submission->user_id)
+                            @if(auth()->user()->id == $submission->user_id && auth()->user()->id != $classroom->user->id)
                                 @if($submission->industryGrade)
                                     @if ($submission->industryGrade->industry_points)
                                         <p>{{ $industryWork->user->fname." ".$industryWork->user->lname.": ".$submission->industryGrade->industry_points."/".$industryWork->points }}</p>
                                     @endif
                                     @if($submission->industryGrade->teacher_points)
-                                        <p>                   {{ $classroom->user->fname." ".$classroom->user->lname.": ".$submission->industryGrade->teacher_points."/".$industryWork->points }}</p>
+                                        <p>{{ $classroom->user->fname." ".$classroom->user->lname.": ".$submission->industryGrade->teacher_points."/".$industryWork->points }}</p>
                                     @endif
                                 @else
                                     {{ "Not Graded" }}
@@ -145,18 +145,22 @@
                 </form>
 
                 <div class="card p-2 ml-5 mt-3 shadow-sm">
-                    <div class="input-group mb-3 mt-3">
-                        <img src="{{ asset('uploads/profiles/'.auth()->user()->image) }}" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
-                        <input type="text" class="form-control rounded-pill" placeholder="Add a class comment..." aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <div class="input-group-append">
-                            <button class=" btn btn-circle" type="button" id="button-addon2"><i class="fas fa-angle-double-right"></i></button>
+                    <form method="post" action="" enctype="multipart/form-data">
+                        @csrf
+                        <div class="input-group mb-3 mt-3">
+                            <img src="{{ asset('uploads/profiles/'.auth()->user()->image) }}" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
+                            <input name='comment' type="text" class="form-control rounded-pill" placeholder="Add a class comment..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <div class="input-group-append">
+                                <button class=" btn btn-circle" type="submit" id="button-addon2"><i class="fas fa-angle-double-right"></i></button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             @endif
             <!-- Submit Cart End -->
         </div>
+
     </div>
     <!-- Container -->
     <script>

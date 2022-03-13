@@ -1,7 +1,7 @@
 @extends('layouts.general.generalMaster')
 @section('content')
     <!-- Begin Page Content -->
-    <div class="container-fluid">
+    <div class="container-fluid mt-3">
         @if (session()->has('message'))
         <div x-data="{ show:true }"
             x-init="setTimeout(() => show = false, 4000)"

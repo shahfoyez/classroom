@@ -9,7 +9,7 @@
 
     </style>
     <!-- ROW -->
-    <div class="row col-lg-11 mx-auto" style="margin-bottom:20px;">
+    <div class="row col-lg-11 mx-auto" style="margin-bottom:20px; margin-top: 15px">
         <div class="col-12 ">
             <div class="card bg-dark shadow p-3 mb-3 bg-white rounded" style="background-image: url({{ url('assets/img/banner/b2.jpg') }}); background-size: 1000px 190px; height: 210px;">
                 <div class="card-img-overlay">
@@ -155,7 +155,7 @@
                                             <!-- END CARD -->
                                             @endif
                                         </div>
-                                        <div class="input-group mb-3 mt-3">
+                                        <div class="input-group mb-3 mt-3 pl-3">
                                             <img src="{{ asset('uploads/profiles/'.auth()->user()->image) }}" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
                                             <input type="text" class="form-control rounded-pill" placeholder="Add a class comment..." aria-label="Recipient's username" aria-describedby="button-addon2">
                                             <div class="input-group-append">

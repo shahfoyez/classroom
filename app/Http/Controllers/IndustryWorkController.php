@@ -34,6 +34,7 @@ class IndustryWorkController extends Controller
         // dd($industryWorks->iw_id);
         $curMember =ClassroomMember::get()->where('user_id', auth()->user()->id);
         $industryWorks = $classroom->classIndustryWork;
+        // dd($industryWork);
         return view('addedWorkView1', [
             'classroomMember' => $curMember,
             'industryWorks' => $industryWorks,

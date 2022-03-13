@@ -34,7 +34,7 @@
                 <div class="row" >
                     <img width="25px" height="25px" class="img-profile rounded-circle" src="{{ asset('uploads/profiles/'.$people->user->image) }}">
                     <h6 class="text-dark" style="margin-left: 15px; padding-top: 5px;">{{ $people->user->fname." ".$people->user->lname }}</h6>
-                    <button type="button" class="ml-auto btn btn-warning" style="height: 30px;"><h6>Mail</h6></button>
+                    <a class="ml-auto btn btn-warning" href="https://mail.google.com/mail/u/0/#inbox?compose=new"> Mail</a class="ml-auto btn btn-warning">
                 </div>
                 <hr  style="margin-top:8px;margin-bottom:10px;">
                 @php

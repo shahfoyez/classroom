@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="container-fluid mt-3">
     {{-- Session flash message --}}
     @if (session()->has('message'))
     <div x-data="{ show:true }"

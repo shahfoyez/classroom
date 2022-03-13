@@ -86,12 +86,15 @@ class IndustryWorkSubmitController extends Controller
     public function industryView(IndustryWork $industryWork)
     {
         //  dd($industryWork);
-         $classroom= Classroom::find($industryWork->classroom_id);
-         $member =ClassroomMember::get()->where('user_id', auth()->user()->id);
-         return view('industryWorkIndustryView', [
+        $industryWorks= IndustryWork::get()->where('user_id', auth()->user()->id);
+        $classroom= Classroom::find($industryWork->classroom_id);
+        $member =ClassroomMember::get()->where('user_id', auth()->user()->id);
+        return view('industryWorkIndustryView', [
              'classroomMember' => $member,
              'classroom' => $classroom,
-             'industryWork' => $industryWork
+             'industryWork' => $industryWork,
+             'industryWorks' => $industryWorks
+
          ]);
     }
 

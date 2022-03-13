@@ -10,12 +10,15 @@ class Assignment extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $with=['assignmentSubmission'];
+    protected $with=['assignmentSubmission', 'comments'];
 
     public function post(){
         return $this->belongsTo(Post::class, 'post_id');
     }
     public function assignmentSubmission(){
         return $this->hasMany(AssignmentSubmission::class, 'assignment_id');
+    }
+    public function comments(){
+        return $this->hasMany(Comment::class, 'as_id');
     }
 }

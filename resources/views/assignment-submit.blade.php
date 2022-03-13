@@ -2,7 +2,7 @@
 
 @section('content')
     @error('assignment')
-    <div class="alert alert-warning ml-5 mr-5" role="alert" >
+    <div class="alert alert-warning ml-5 mr-5 mt-3" role="alert" >
         <p class="error text-danger" style="font-size: 15px; margin-bottom:0px">{{ $message }}</p>
     </div>
     @enderror
@@ -10,12 +10,12 @@
         <div x-data="{ show:true }"
             x-init="setTimeout(() => show = false, 4000)"
             x-show="show"
-            class="alert alert-success pb-0 ml-5 mr-5">
+            class="alert alert-success pb-0 ml-5 mr-5 mt-3">
             <p>{{ session('message') }}</p>
         </div>
     @endif
     <!-- Begin Page Content -->
-    <div class="container mx-auto shadow-sm mb-5 pt-3 " style="min-height: 525px; margin-top: 30px">
+    <div class="container mx-auto shadow-sm mb-5 pt-3" style="min-height: 525px; margin-top: 30px">
         <div class="row m-2">
              <!-- Assignment Details -->
             <div class="{{ $assignment->post->user->id == auth()->user()->id ? 'col-lg-10' : 'col-lg-8'}} ">
@@ -88,8 +88,6 @@
                     </div>
                 </div>
                 @endif
-
-
             </div>
             <!-- Assignment Details End -->
             <!-- Submit cards -->
@@ -138,20 +136,66 @@
 
                     </div>
                 </form>
-
-                <div class="card p-2 ml-5 mt-3 shadow-sm">
-                    <div class="input-group mb-3 mt-3">
-                        <img src="{{ asset('uploads/profiles/'.auth()->user()->image) }}" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
-                        <input type="text" class="form-control rounded-pill" placeholder="Add a class comment..." aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <div class="input-group-append">
-                            <button class=" btn btn-circle" type="button" id="button-addon2"><i class="fas fa-angle-double-right"></i></button>
+                <form method="post" action="/assignmentComment/{{ $assignment->id }}/{{ $classroom->id }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="card p-2 ml-5 mt-3 shadow-sm">
+                        <div class="input-group mb-3 mt-3">
+                            <img src="{{ asset('uploads/profiles/'.auth()->user()->image) }}" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
+                            <input name="comment" type="text" class="form-control rounded-pill" placeholder="Add a class comment..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-circle" type="submit" id="button-addon2"><i class="fas fa-angle-double-right"></i></button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
             @endif
             <!-- Submit Cart End -->
         </div>
+        <!-- Comment Start -->
+        <div class="container d-flex justify-content-center pb-50 pt-20 ">
+            <div class="row col-md-12">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title" > Comments {{ "(".$assignment->comments->count().")" }}</h4>
+                        </div>
+                        @foreach ($assignment->comments as $comment)
+                            {{-- @if($comment->user->id== auth()->user()->id || auth()->user()->id == $classroom->user->id) --}}
+                                <div class="comment-widgets m-b-20">
+                                    <div class="d-flex flex-row comment-row">
+                                        <div class="pr-3"><span class="round"><img src="{{ asset('uploads/profiles/'.$comment->user->image) }}" alt="user" width="50" height="50"></span></div>
+                                        <div class="comment-text w-100">
+                                            <h5 class="{{ $comment->user->id== $classroom->user->id ? 'font-weight-bold' : '' }}" style="color:#8aa7e9;">{{ $comment->user->id == $classroom->user->id ?  $comment->user->fname." ".$comment->user->lname." (Teacher)" : $comment->user->fname." ".$comment->user->lname}}</h5>
+                                            <div class="comment-footer">
+                                                <span class="date">{{ $comment->created_at->diffForHumans(); }}</span>
+                                            </div>
+                                            <p class="m-b-5 mt-3 font-weight-bold">{{ $comment->comment }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {{-- @endif --}}
+                        @endforeach
+
+                    </div>
+                    @if(auth()->user()->id==$classroom->user->id)
+                        <form method="post" action="/assignmentComment/{{ $assignment->id }}/{{ $classroom->id }}" enctype="multipart/form-data">
+                            @csrf
+                            <div class="card p-2">
+                                <div class="input-group mb-3 mt-3">
+                                    <img src="{{ asset('uploads/profiles/'.auth()->user()->image) }}" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
+                                    <input name="comment" type="text" class="form-control rounded-pill" placeholder="Add a class comment..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-circle" type="submit" id="button-addon2"><i class="fas fa-angle-double-right"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    @endif
+                </div>
+            </div>
+        </div>
+        <!-- Comment End -->
     </div>
     <!-- Container -->
     <script>
