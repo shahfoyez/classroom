@@ -107,7 +107,7 @@
                                                             @endif
                                                         </div>
                                                         <hr class="p-2">
-                                                        <a href="/assignmentSubmitPage/{{ $post->id }}" class="card-link">View Assignment</a>
+                                                        <a href="/assignmentSubmitPage/{{ $post->id }}" class="btn btn-primary ml-3"><i class="fas fa-eye"></i> View Assignment</a>
                                                     </div>
                                                 </div>
                                             </div>

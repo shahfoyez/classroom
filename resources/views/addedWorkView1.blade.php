@@ -93,7 +93,7 @@
                                                     @endif
                                                 </div>
                                                 <hr class="p-2">
-                                                <a href="/industryWorkSubmit/{{ $work->industryWork->id }}/{{ $classroom->id }}" class="card-link">View Work</a>
+                                                <a href="/industryWorkSubmit/{{ $work->industryWork->id }}/{{ $classroom->id }}" class="btn btn-primary ml-3"><i class="fas fa-eye"></i> View Work</a>
                                             </div>
                                         </div>
                                     </div>

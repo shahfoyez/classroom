@@ -125,7 +125,7 @@
                                                 @endif
                                             </div>
                                             <hr class="p-2">
-                                            <a href="/industryWorkTeacherView/{{ $work->id }}/{{ $classroom->id }}" class="card-link">View Work</a>
+                                            <a href="/industryWorkTeacherView/{{ $work->id }}/{{ $classroom->id }}" class="btn btn-primary ml-3"><i class="fas fa-eye"></i> View Work</a>
                                             @php
                                                 $workExist=0;
                                             @endphp
@@ -137,9 +137,9 @@
                                                 @endif
                                             @endforeach
                                             @if ($workExist==1)
-                                                <a href="#" class="card-link" style="color: green;">Added</a>
+                                                <a href="#" class="btn btn-primary ml-2" style="background-color: green"><i class="fa fa-check" aria-hidden="true" style="color: rgb(255, 255, 255);"></i> Added</a>
                                             @else
-                                                <a href="/workAddToClass/{{$classroom->id}}/{{$work->id}}" class="card-link">Add To Class</a>
+                                                <a href="/workAddToClass/{{$classroom->id}}/{{$work->id}}" class="btn btn-primary  ml-2"><i class="fa fa-plus"></i> Add To Class</a>
                                             @endif
                                         </div>
                                     </div>
