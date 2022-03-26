@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\GradeController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\RegisterController;
@@ -12,7 +14,6 @@ use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\IndustryWorkController;
 use App\Http\Controllers\IndustryWorkSubmitController;
 use App\Http\Controllers\AssignmentSubmissionController;
-use App\Http\Controllers\CommentController;
 
 Route::get('/', function () {
     return view('index');
@@ -64,6 +65,9 @@ Route::post('/industryWorkSubmit/{industryWork}/{classroom}', [IndustryWorkSubmi
 Route::get('/industryWork/{industryWork}/{classroom}', [IndustryWorkSubmitController::class, 'index'])->middleware('auth');
 Route::post('/industryGradeSubmit/{industryWorkSubmit}', [IndustryWorkSubmitController::class, 'industryGradeSubmit'])->middleware('auth');
 Route::post('/assignmentComment/{assignment}/{classroom}', [CommentController::class, 'store'])->middleware('auth');
+
+Route::get('/assignmentMark/{post}', [PdfController::class, 'assignmentMark'])->middleware('auth');
+
 
 
 

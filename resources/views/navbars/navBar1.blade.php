@@ -52,7 +52,8 @@
                 </div>
             </li>
         </ul>
-        @elseif (((request()->is('industryWorkSubmit/*') || request()->is('industryWorkIndustryView/*')) && (auth()->user()->id==$classroom->created_by || auth()->user()->id==$industryWork->user_id)) || (request()->is('industryWork/*') && auth()->user()->role!=3))
+
+        @elseif ((request()->is('industryWorkSubmit/*') || request()->is('industryWorkIndustryView/*')) && (auth()->user()->id==$classroom->created_by || auth()->user()->id==$industryWork->user_id) || (request()->is('industryWork/*') && auth()->user()->role!=3))
         <ul class="navbar-nav" style="
             @if(request()->is('industryWorkSubmit/*') || request()->is('industryWorkIndustryView/*'))
                 {{ 'margin-left: 193px' }}

@@ -20,8 +20,9 @@
                     </div>
                     @endif
                 </div>
-                <div class="col-lg-12">
-                    <h3><i class="fa fa-users" aria-hidden="true"></i> All Students</h3>
+                <div class="col-lg-12 mb-3">
+                    <h3 class="d-inline"><i class="fa fa-users" aria-hidden="true"></i> All Students</h3>
+                    <a href="/assignmentMark/{{ $assignment->post_id }}" class='btn btn-primary d-inline  float-right'>Export</a>
                 </div>
                 <div class="table-wrapper-scroll-y my-custom-scrollbar">
                 <table class="table">
@@ -35,8 +36,6 @@
                     @php
                         $totalLate=0;
                         $totalGraded=0;
-
-
                     @endphp
                     @foreach ($members as $member)
                         <tbody>
@@ -123,7 +122,7 @@
             </div>
             <!-- Left -->
             <!-- Right -->
-            <div class="col-lg-8 vl v p-4 mt-sm-2" style="height: 600px;">
+            <div class="col-lg-8 vl v p-4 mt-sm-2 table-wrapper-scroll-y my-custom-scrollbar" style="min-height: 600px;">
                 <div class="col-lg-12">
                     <h3><i class="fa fa-book" aria-hidden="true"></i> {{ $assignment->title }}</h3>
                 </div>

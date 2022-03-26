@@ -69,7 +69,8 @@ h6 .late{
 .card-body {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
-    padding: 1.25rem
+    padding: 1.25rem;
+    background-color: #f3f3f34a;
 }
 
 .comment-widgets .comment-row:hover {

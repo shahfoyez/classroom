@@ -15,7 +15,7 @@
         </div>
     @endif
     <!-- Begin Page Content -->
-    <div class="container mx-auto shadow-sm mb-5 pt-3" style="min-height: 525px; margin-top: 30px">
+    <div class="container mx-auto shadow-sm mb-4 pt-4" style="min-height: 525px; margin-top: 30px; background-color: #e9e9e912">
         <div class="row m-2">
              <!-- Assignment Details -->
             <div class="{{ $assignment->post->user->id == auth()->user()->id ? 'col-lg-10' : 'col-lg-8'}} ">
@@ -73,16 +73,16 @@
 
 
                 @if($assignment->post->attachment)
-                <div class="card mb-3 ml-4 rounded" style="max-width: 700px; max-height:300px;">
-                    <div class="row no-gutters">
+                <div class="card mb-3 ml-4 rounded" style="max-width: 700px; max-height:300px; box-shadow: 0 .125rem .25rem 0 rgba(58,59,69,.2)!important;">
+                    <div class="row no-gutters mb-0">
                         <div class="col-md-4">
-                            <img  src="{{ asset('uploads/classrooms/attachments/'.$assignment->post->attachment->path) }}" style="width:100%;cursor:pointer"
+                            <img  src="{{ asset('uploads/classrooms/attachments/'.$assignment->post->attachment->path) }}" style="width: 225px; height: 200px;cursor:pointer;"
                                 onclick="onClick(this)" class="w3-hover-opacity rounded-left">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title mt-5"><a href="{{ route('getfile', 'uploads/classrooms/attachments/'.$assignment->post->attachment->path) }}">{{ $assignment->post->attachment->path }}</a>
-                                </h5>
+                                <h3 class="card-title" style="padding: 44px 40px 44px 40px;"><a href="{{ route('getfile', 'uploads/classrooms/attachments/'.$assignment->post->attachment->path) }}">{{ $assignment->post->attachment->path }}</a>
+                                </h3>
                             </div>
                         </div>
                     </div>
@@ -152,52 +152,52 @@
             @endif
             <!-- Submit Cart End -->
         </div>
-        <!-- Comment Start -->
-        <div class="container d-flex justify-content-center pb-50 pt-20 ">
-            <div class="row col-md-12">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title" > Comments {{ "(".$assignment->comments->count().")" }}</h4>
-                        </div>
-                        @foreach ($assignment->comments as $comment)
-                            {{-- @if($comment->user->id== auth()->user()->id || auth()->user()->id == $classroom->user->id) --}}
-                                <div class="comment-widgets m-b-20">
-                                    <div class="d-flex flex-row comment-row">
-                                        <div class="pr-3"><span class="round"><img src="{{ asset('uploads/profiles/'.$comment->user->image) }}" alt="user" width="50" height="50"></span></div>
-                                        <div class="comment-text w-100">
-                                            <h5 class="{{ $comment->user->id== $classroom->user->id ? 'font-weight-bold' : '' }}" style="color:#8aa7e9;">{{ $comment->user->id == $classroom->user->id ?  $comment->user->fname." ".$comment->user->lname." (Teacher)" : $comment->user->fname." ".$comment->user->lname}}</h5>
-                                            <div class="comment-footer">
-                                                <span class="date">{{ $comment->created_at->diffForHumans(); }}</span>
-                                            </div>
-                                            <p class="m-b-5 mt-3 font-weight-bold">{{ $comment->comment }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            {{-- @endif --}}
-                        @endforeach
-
+    </div>
+    <!-- Container -->
+     <!-- Comment Start -->
+      <div class="container mx-auto shadow-sm mb-2 mt-4 pt-3 pb-4 mb-5" style="background-color: #e9e9e912">
+        <div class="row col-md-12">
+            <div class="col-md-12">
+                <div>
+                    <div class="card-body">
+                        <h4 class="card-title" > Comments {{ "(".$assignment->comments->count().")" }}</h4>
                     </div>
-                    @if(auth()->user()->id==$classroom->user->id)
-                        <form method="post" action="/assignmentComment/{{ $assignment->id }}/{{ $classroom->id }}" enctype="multipart/form-data">
-                            @csrf
-                            <div class="card p-2">
-                                <div class="input-group mb-3 mt-3">
-                                    <img src="{{ asset('uploads/profiles/'.auth()->user()->image) }}" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
-                                    <input name="comment" type="text" class="form-control rounded-pill" placeholder="Add a class comment..." aria-label="Recipient's username" aria-describedby="button-addon2">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-circle" type="submit" id="button-addon2"><i class="fas fa-angle-double-right"></i></button>
+                    @foreach ($assignment->comments as $comment)
+                        {{-- @if($comment->user->id== auth()->user()->id || auth()->user()->id == $classroom->user->id) --}}
+                            <div class="comment-widgets m-b-20">
+                                <div class="d-flex flex-row comment-row">
+                                    <div class="pr-3"><span class="round"><img src="{{ asset('uploads/profiles/'.$comment->user->image) }}" alt="user" width="50" height="50"></span></div>
+                                    <div class="comment-text w-100">
+                                        <h5 class="{{ $comment->user->id== $classroom->user->id ? 'font-weight-bold' : '' }}" style="color:#8aa7e9;">{{ $comment->user->id == $classroom->user->id ?  $comment->user->fname." ".$comment->user->lname." (Teacher)" : $comment->user->fname." ".$comment->user->lname}}</h5>
+                                        <div class="comment-footer">
+                                            <span class="date">{{ $comment->created_at->diffForHumans(); }}</span>
+                                        </div>
+                                        <p class="m-b-5 mt-3 font-weight-bold">{{ $comment->comment }}</p>
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    @endif
+                        {{-- @endif --}}
+                    @endforeach
+
                 </div>
+                @if(auth()->user()->id==$classroom->user->id)
+                    <form method="post" action="/assignmentComment/{{ $assignment->id }}/{{ $classroom->id }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="card p-2">
+                            <div class="input-group mb-3 mt-3">
+                                <img src="{{ asset('uploads/profiles/'.auth()->user()->image) }}" width="35" height="35" alt="..." class="rounded-circle ml-2 mr-2">
+                                <input name="comment" type="text" class="form-control rounded-pill" placeholder="Add a class comment..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-circle" type="submit" id="button-addon2"><i class="fas fa-angle-double-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                @endif
             </div>
-        </div>
-        <!-- Comment End -->
-    </div>
-    <!-- Container -->
+      </div>
+       </div>
+    <!-- Comment End -->
     <script>
         $(function() {
             function readURL(input, target) {

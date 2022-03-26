@@ -81,7 +81,7 @@
                 <div class="card mb-3 ml-4 rounded" style="max-width: 700px; max-height:300px;">
                     <div class="row no-gutters">
                         <div class="col-md-4">
-                            <img  src="{{ asset('uploads/classrooms/attachments/'.$industryWork->image) }}" style="width:100%;cursor:pointer"
+                            <img  src="{{ asset('uploads/classrooms/attachments/'.$industryWork->image) }}" style="width: 160px; height: 150px; border-radius: 4px; cursor:pointer"
                                 onclick="onClick(this)" class="w3-hover-opacity rounded-left">
                         </div>
                         <div class="col-md-8">

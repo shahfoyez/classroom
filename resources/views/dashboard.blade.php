@@ -136,7 +136,7 @@
                                                         <div class="card mb-3 ml-2" style="max-width: 400px; max-height:100px;">
                                                             <div class="row no-gutters">
                                                                 <div class="col-md-4">
-                                                                    <img  src="{{ asset('uploads/classrooms/attachments/'.$work->image) }}" style="width:100%; cursor:pointer"
+                                                                    <img  src="{{ asset('uploads/classrooms/attachments/'.$work->image) }}" style="width: 120px; height: 100px; border-radius: 4px;; cursor:pointer"
                                                                         onclick="onClick(this)" class="w3-hover-opacity">
                                                                 </div>
                                                                 <div class="col-md-8">

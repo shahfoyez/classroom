@@ -91,9 +91,9 @@
                                                             </p>
                                                             @if($post->attachment)
                                                             <div class="card mb-3 ml-2" style="max-width: 400px; max-height:100px;">
-                                                                <div class="row no-gutters">
+                                                                <div class="row no-gutters" style="background-color: #ffffff">
                                                                     <div class="col-md-4">
-                                                                        <img  src="{{ asset('uploads/classrooms/attachments/'.$post->attachment->path) }}" style="width:100%;cursor:pointer"
+                                                                        <img  src="{{ asset('uploads/classrooms/attachments/'.$post->attachment->path) }}" style="width: 133px; height: 100px; cursor:pointer; border-radius: 5px;"
                                                                             onclick="onClick(this)" class="w3-hover-opacity">
                                                                     </div>
                                                                     <div class="col-md-8">
